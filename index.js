@@ -28,8 +28,9 @@ function _i_to_stars(i, upper){
   var ii = Math.floor((i / (upper))*100);
   if(ii < 100){ return ''; }
   var r = Math.ceil((ii - 100) / 10);
-  if(r > 3){
-    r = 3;
+  r++;
+  if(r > 4){
+    r = 4;
   }
   return Array(r).join('★');
 }
@@ -80,7 +81,7 @@ function _fetch_toggl(){
 }
 _fetch_toggl();
 
-setInterval(_fetch_toggl, 5000);
+setInterval(_fetch_toggl, 30000);
 
 function _s_to_human(dur) {
   var h = Math.floor(dur / 3600);
