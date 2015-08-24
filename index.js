@@ -10,8 +10,19 @@ var totaltime = 0;
 var plan_lines = 0;
 var tgl_data = false;
 
+var wids = {
+  '281169': {
+    label: 'my',
+    goal: 3600
+  },
+  '358026': {
+    label: 'beta',
+    goal: 3600*8
+  }
+};
+
 var tinygradient = require('tinygradient');
-var clrs = tinygradient('#E50000', '#FCFC00', '#2EFC00')
+var clrs = tinygradient(['#E50000', '#FCFC00', '#2EFC00'])
   .rgb(100)
   .map(function(itm){
     return itm.toHexString().toUpperCase();
@@ -61,22 +72,20 @@ function _fetch_toggl(){
   ts(function(err, data){
     if(err){
       return;
-      //return console.log(err);
     }
-    totaltime = 0;
     tgl_data = data;
 
-    data.forEach(function(itm){
-      if(itm.active){
-        tgl_active = itm;
-      }else{
-        tgl_active = false;
-      }
-      if(itm.description === 'solo'){
-        return;
-      }
-      totaltime+= itm.duration;
-    });
+   // data.forEach(function(itm){
+   //   if(itm.active){
+   //     tgl_active = itm;
+   //   }else{
+   //     tgl_active = false;
+   //   }
+   //   if(itm.description === 'solo'){
+   //     return;
+   //   }
+   //   totaltime+= itm.duration;
+   // });
   });
 }
 _fetch_toggl();
@@ -95,45 +104,67 @@ module.exports = function(data) {
     full_text: prj.replace(/^.*\/(.*\/.*)$/,'$1'), 
   });
 
-  if(tgl_active){
-    data.push({
-      name: 'toggle_active', 
-      full_text: 'TGL',
-      color: '#FCFC00'
-    });
-    data.push({
-      name: 'toggle', 
-      full_text: tgl_active.description + ' ('+tgl_active.human+')',
-      color: _s_to_color(tgl_active.duration, 1800)
-    });
-  }
-
-  if(totaltime){
-    data.push({
-      name: 'toggle_total', 
-      full_text: 'tgl:'+_i_to_stars(totaltime, 4 * 3600)+_s_to_human(totaltime),
-      color: _s_to_color(totaltime, 4 * 3600)
+  if(tgl_data){
+    _.each(tgl_data, function(group, wid){
+      _.each(group, function(entry){
+        if(entry.active){
+          data.push({
+            name: 'toggle_active', 
+            full_text: 'TGL',
+            color: '#FCFC00'
+          });
+          var pr = "";
+          if(wids[wid]){
+            pr = wids[wid].label+":";
+          }
+          data.push({
+            name: 'toggle', 
+            full_text: pr + entry.description + ' ('+entry.human+')',
+            color: _s_to_color(entry.duration, 1800)
+          });
+        }
+      });
     });
   }
 
   if(tgl_data){
-    tgl_data.forEach(function(itm){
-      if (itm.description === 'solo') {
-        var txt = 'solo:'+
-            _i_to_stars(itm.duration, 1800)+
-            _s_to_human(itm.duration);
+    for (var i in wids) {
+      var v = wids[i];
+      if(tgl_data[i]){
+        var totaltime = 0;
+        tgl_data[i].forEach(function(itm){
+          if(itm.description === 'solo'){
+            return;
+          }
+          totaltime+= itm.duration;
+        });
+
         data.push({
-          name: 'toggle_solo', 
-          full_text: txt,
-          color: _s_to_color(itm.duration, 1800)
+          name: 'toggle_'+i, 
+          full_text: v.label+':'+_i_to_stars(totaltime, v.goal)+_s_to_human(totaltime),
+          color: _s_to_color(totaltime, v.goal)
         });
       }
-    });
+    }
+
+   // tgl_data.forEach(function(itm){
+   //   if (itm.description === 'solo') {
+   //     var txt = 'solo:'+
+   //         _i_to_stars(itm.duration, 1800)+
+   //         _s_to_human(itm.duration);
+   //     data.push({
+   //       name: 'toggle_solo', 
+   //       full_text: txt,
+   //       color: _s_to_color(itm.duration, 1800)
+   //     });
+   //   }
+   // });
   }
   
   data.push({
     name: 'plan_lines', 
-    full_text: 'pl:'+plan_lines
+    full_text: 'pl:'+plan_lines,
+    color: _s_to_color((30 - plan_lines), 30)
   });
 
   return data;
