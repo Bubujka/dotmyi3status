@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "tinygradient": "^0.3.0",
-    "toggl-stats": "0.0.1"
+    "toggl-stats": "0.0.1",
+    "underscore": "^1.8.3"
   }
 }
