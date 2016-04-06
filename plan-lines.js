@@ -18,9 +18,9 @@ setInterval(_update_plan_lines, 10000);
 
 module.exports = function(data){
   data.push({
-    name: 'plan_lines', 
+    name: 'plan_lines',
     full_text: 'pl:'+plan_lines,
-    color: helpers.i_to_color((30 - plan_lines), 30)
+    color: helpers.i_to_color(Math.max(0, (30 - plan_lines)), 30)
   });
   return data;
 };

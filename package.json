@@ -9,6 +9,7 @@
   "author": "Aleksej Kamynin <zendzirou@gmail.com> (http://bubujka.org/)",
   "license": "MIT",
   "dependencies": {
+    "expand-tilde": "^1.2.0",
     "moment": "^2.10.6",
     "sprintf-js": "^1.0.3",
     "tinygradient": "^0.3.0",
