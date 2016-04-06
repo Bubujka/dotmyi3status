@@ -12,7 +12,7 @@
     "moment": "^2.10.6",
     "sprintf-js": "^1.0.3",
     "tinygradient": "^0.3.0",
-    "toggl-stats": "0.0.1",
+    "toggl-stats": "0.2.0",
     "underscore": "^1.8.3"
   }
 }
