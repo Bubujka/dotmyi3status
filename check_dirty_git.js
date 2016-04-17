@@ -25,7 +25,7 @@ module.exports = function(projects){
            });
     }, function(err){
       if(err){console.log(err);return;}
-      if(t.length){ text = t.sort().join(', '); }
+      text = t.sort().join(', ');
     });
   }
   update();
