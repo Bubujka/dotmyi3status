@@ -5,6 +5,7 @@ var check_dirty_git = require('./check_dirty_git');
 var fns = [
   commits_on_file_today('~/.db/wiki', 'waiting.md', 'waiting'),
   check_dirty_git({
+    '~/.db/gnucash': '$$$',
     '~/.db/wiki': 'wiki',
     '~/.db/dotfiles': '.files',
     '~/.db/dotfiles-private': '.files-p',
