@@ -9,11 +9,14 @@
   "author": "Aleksej Kamynin <zendzirou@gmail.com> (http://bubujka.org/)",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "expand-tilde": "^1.2.0",
     "moment": "^2.10.6",
+    "sprintf": "^0.1.5",
     "sprintf-js": "^1.0.3",
     "tinygradient": "^0.3.0",
     "toggl-stats": "0.2.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "untildify": "^2.1.0"
   }
 }
