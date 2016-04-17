@@ -32,13 +32,11 @@ module.exports = function(projects){
   setInterval(update, 10000);
 
   return function(data){
-    if(text.length){
-      data.push({
-        name: 'check_dirty_git'+uid,
-        full_text: text,
-        color: helpers.i_to_color(0, 1)
-      });
-    }
+    data.push({
+      name: 'check_dirty_git'+uid,
+      full_text: text,
+      color: helpers.i_to_color(0, 1)
+    });
     return data;
   };
 };
