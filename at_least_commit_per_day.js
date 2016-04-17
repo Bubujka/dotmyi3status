@@ -13,12 +13,12 @@ module.exports = function(projects){
     var t = [];
     async.forEachOf(projects, function(name, pth, cb){
       pth = ut(pth);
-      exec(sprintf('git --git-dir=%s/.git --work-tree=%s status --porcelain', pth, pth),
+      exec(sprintf('git --git-dir=%s/.git --work-tree=%s log --since 0am', pth, pth),
            function(err,stdout){
              if(err){
                return cb(err);
              }
-             if(stdout.length > 0){
+             if(!stdout.length){
                t.push(name);
              }
              cb();
@@ -33,8 +33,8 @@ module.exports = function(projects){
 
   return function(data){
     data.push({
-      name: 'check_dirty_git'+uid,
-      full_text: text !== '' ? 'dirty: '+text : '',
+      name: 'at_least_commit_per_day'+uid,
+      full_text: text !== '' ? 'wrk: '+text : '',
       color: helpers.i_to_color(0, 1)
     });
     return data;
