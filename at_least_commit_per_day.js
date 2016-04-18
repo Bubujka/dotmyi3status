@@ -13,7 +13,7 @@ module.exports = function(projects){
     var t = [];
     async.forEachOf(projects, function(name, pth, cb){
       pth = ut(pth);
-      exec(sprintf('git --git-dir=%s/.git --work-tree=%s log --since 0am', pth, pth),
+      exec(sprintf('git --git-dir=%s/.git --work-tree=%s log --since midnight', pth, pth),
            function(err,stdout){
              if(err){
                return cb(err);

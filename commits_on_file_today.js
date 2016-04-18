@@ -7,7 +7,7 @@ module.exports = function(project, file, format){
   uid++;
   var lines = 0;
   function update(){
-    exec('git --git-dir '+project+'/.git  log --since 0am --oneline -- '+file, function(err,stdout){
+    exec('git --git-dir '+project+'/.git  log --since midnight --oneline -- '+file, function(err,stdout){
       lines = stdout.split('\n').filter(function(str){ return str !== ''; }).length;
     });
   }
