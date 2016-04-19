@@ -13,6 +13,7 @@ var fns = [
     '~/.db/prj/najomi_data': 'najomi'
   }),
   check_dirty_git({
+    '~/.db/prj/tis': 'tis',
     '~/.bu.bin': 'bin',
     '~/.db/gnucash': '$$$',
     '~/.db/wiki': 'wiki',
