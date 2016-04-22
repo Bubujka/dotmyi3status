@@ -6,7 +6,9 @@ var check_dirty_git = require('./check_dirty_git');
 
 var fns = [
   commits_on_file_today('~/.db/wiki', 'waiting.md', '+wit'),
-  commits_on_file_today('~/.db/wiki', 'next-home.md', '+n-home'),
+  commits_on_file_today('~/.db/wiki', 'next-home.md', '+n-hme'),
+  commits_on_file_today('~/.db/wiki', 'next-computer.md', '+n-cmp'),
+  commits_on_file_today('~/.db/wiki', 'next-office.md', '+n-off'),
   at_least_commit_per_day({
     '~/.db/prj/tis': 'tis',
     '~/.db/gnucash': '$$$',
