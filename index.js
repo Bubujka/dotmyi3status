@@ -5,7 +5,8 @@ var at_least_commit_per_day = require('./at_least_commit_per_day');
 var check_dirty_git = require('./check_dirty_git');
 
 var fns = [
-  commits_on_file_today('~/.db/wiki', 'waiting.md', 'wrk: wiki/waiting.md'),
+  commits_on_file_today('~/.db/wiki', 'waiting.md', '+wit'),
+  commits_on_file_today('~/.db/wiki', 'next-home.md', '+n-home'),
   at_least_commit_per_day({
     '~/.db/prj/tis': 'tis',
     '~/.db/gnucash': '$$$',
