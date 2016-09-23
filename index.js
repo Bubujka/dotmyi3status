@@ -35,5 +35,6 @@ module.exports = function(data) {
     data = fn(data);
   });
 
+  data = require('./timer')(data);
   return data;
 };
