@@ -5,16 +5,6 @@ var at_least_commit_per_day = require('./at_least_commit_per_day');
 var check_dirty_git = require('./check_dirty_git');
 
 var fns = [
-  commits_on_file_today('~/.db/wiki', 'waiting.md', '+wit'),
-  commits_on_file_today('~/.db/wiki', 'next-home.md', '+n-hme'),
-  commits_on_file_today('~/.db/wiki', 'next-computer.md', '+n-cmp'),
-  commits_on_file_today('~/.db/wiki', 'next-office.md', '+n-off'),
-  at_least_commit_per_day({
-    '~/.db/prj/tis': 'tis',
-    '~/.db/gnucash': '$$$',
-    '~/.db/wiki': 'wiki',
-    '~/.db/prj/najomi_data': 'najomi'
-  }),
   check_dirty_git({
     '~/.db/prj/tis': 'tis',
     '~/.bu.bin': 'bin',
@@ -28,8 +18,6 @@ var fns = [
 
 module.exports = function(data) {
   data = require('./toggl')(data);
-  data = require('./plan-lines')(data);
-  data = require('./money')(data);
 
   fns.forEach(function(fn){
     data = fn(data);

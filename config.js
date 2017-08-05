@@ -1,19 +1,5 @@
-module.exports = { 
+module.exports = {
   tasks: [
-    {
-      wid: '281169',
-      label: 'solo',
-      descs: ['соло', 'solo'],
-      update: 3600,
-      show: ['year', 'month','week']
-    },
-    {
-      wid: '281169',
-      label: 'lingua',
-      descs: ['lingua'],
-      update: 3600,
-      show: ['year', 'month','week']
-    },
   ],
   wids: {
     '281169': {
